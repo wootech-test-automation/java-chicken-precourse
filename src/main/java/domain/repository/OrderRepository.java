@@ -46,4 +46,8 @@ public class OrderRepository {
                 .collect(Collectors.toList());
         orders.removeAll(collect);
     }
+
+    public static void deleteAll() {
+        orders.clear();
+    }
 }
