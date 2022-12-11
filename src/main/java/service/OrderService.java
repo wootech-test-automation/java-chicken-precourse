@@ -41,7 +41,11 @@ public class OrderService {
     public void order(final MenuSelectDto menuSelectDto, final int tableNumber) {
         Menu findMenu = menuService.findMenu(menuSelectDto.getMenuNumber());
         OrderRepository.saveOrder(
-                new Order(tableNumber, findMenu.getName(), menuSelectDto.getQuantity(), findMenu.getPrice()));
+                new Order(tableNumber,
+                        findMenu.getName(),
+                        findMenu.getCategory(),
+                        menuSelectDto.getQuantity(),
+                        findMenu.getPrice()));
         tableService.addOrdered(tableNumber);
     }
 }

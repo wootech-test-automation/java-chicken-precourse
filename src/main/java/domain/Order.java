@@ -7,14 +7,17 @@ public class Order {
     public static final int LIMIT_QUANTITY = 99;
     private final int tableNumber;
     private final String menuName;
+    private final Category category;
     private int quantity;
     private int totalPrice;
     private int discountPrice;
 
-    public Order(final int tableNumber, final String menuName, final int quantity, final int price) {
+    public Order(final int tableNumber, final String menuName, final Category category, final int quantity,
+                 final int price) {
         validate(quantity);
         this.tableNumber = tableNumber;
         this.menuName = menuName;
+        this.category = category;
         this.quantity = quantity;
         this.totalPrice = quantity * price;
         discountPrice = (quantity / 10 * 10000);
@@ -33,7 +36,10 @@ public class Order {
     }
 
     public int getTotalPrice() {
-        return totalPrice - discountPrice;
+        if (category.equals(Category.CHICKEN)) {
+            return totalPrice - discountPrice;
+        }
+        return totalPrice;
     }
 
     public boolean containsTableNumber(final int tableNumber) {

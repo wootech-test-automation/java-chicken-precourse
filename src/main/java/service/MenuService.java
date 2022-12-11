@@ -6,7 +6,7 @@ import java.util.List;
 
 public class MenuService {
 
-    public List<Menu> finaAllCurrentMenus() {
+    public List<Menu> findAllCurrentMenus() {
         return MenuRepository.menus();
     }
 

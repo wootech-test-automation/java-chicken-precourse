@@ -68,7 +68,7 @@ public class ChickenController {
     }
 
     private MenuSelectDto requestInputMenu() {
-        OutputView.printMenus(menuService.finaAllCurrentMenus());
+        OutputView.printMenus(menuService.findAllCurrentMenus());
         return InputView.inputMenu();
     }
 
