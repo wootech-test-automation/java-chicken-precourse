@@ -9,9 +9,14 @@ public class OutputView {
     private static final String TOP_LINE = "┌ ─ ┐";
     private static final String TABLE_FORMAT = "| %s |";
     private static final String BOTTOM_LINE = "└ ─ ┘";
+    private static final String MAIN_MENU = "## 메인화면";
+    private static final String ORDER = "1 - 주문등록";
+    private static final String PAYMENT = "2 - 결제하기";
+    private static final String QUIT = "3 - 프로그램 종료";
+    public static final String TABLE_LIST = "## 테이블 목록";
 
     public static void printTables(final List<Table> tables) {
-        System.out.println("## 테이블 목록");
+        System.out.println(TABLE_LIST);
         final int size = tables.size();
         printLine(TOP_LINE, size);
         printTableNumbers(tables);
@@ -22,6 +27,14 @@ public class OutputView {
         for (final Menu menu : menus) {
             System.out.println(menu);
         }
+    }
+
+    public static void printMain() {
+        System.out.println(MAIN_MENU);
+        System.out.println(ORDER);
+        System.out.println(PAYMENT);
+        System.out.println(QUIT);
+        System.out.println();
     }
 
     private static void printLine(final String line, final int count) {
@@ -36,5 +49,9 @@ public class OutputView {
             System.out.printf(TABLE_FORMAT, table);
         }
         System.out.println();
+    }
+
+    public static void printMessage(final String message) {
+        System.out.println(message);
     }
 }
