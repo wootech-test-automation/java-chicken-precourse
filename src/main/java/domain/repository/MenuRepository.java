@@ -1,10 +1,17 @@
-package domain;
+package domain.repository;
 
+import domain.type.Category;
+import domain.type.Menu;
+import exception.IllegalInputArgumentException;
+import exception.NotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class MenuRepository {
+
+    private static final String MENU = "메뉴";
+
     private static final List<Menu> menus = new ArrayList<>();
 
     static {
@@ -20,5 +27,12 @@ public class MenuRepository {
 
     public static List<Menu> menus() {
         return Collections.unmodifiableList(menus);
+    }
+
+    public static Menu getMenu(int number) {
+        return menus.stream()
+                .filter(menu -> menu.getNumber() == number)
+                .findAny()
+                .orElseThrow(() -> new NotFoundException(MENU));
     }
 }

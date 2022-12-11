@@ -1,5 +1,6 @@
-package domain;
+package domain.repository;
 
+import domain.type.Table;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -18,5 +19,14 @@ public class TableRepository {
 
     public static List<Table> tables() {
         return Collections.unmodifiableList(tables);
+    }
+
+    public static void setTable(Table table, boolean bool) {
+        for (int i = 0; i < tables.size(); ++i) {
+            Table existTable = tables.get(i);
+            if (existTable.equals(table)) {
+                tables.set(i, new Table(table.getNumber(), bool));
+            }
+        }
     }
 }
