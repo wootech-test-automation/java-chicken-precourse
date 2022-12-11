@@ -7,14 +7,16 @@ import view.OutputView;
 public class PaymentStatus implements OrderSystemStatus {
     @Override
     public OrderSystemStatus next(OrderSystemContext context) {
-        OutputView.printOrderList(context.findOrderByTable());
+        OutputView.printTables(context.findAllTable(), context.findOrderedTableNumbers());
 
-        var nowSelectedTable = context.nowSelectedTable();
-        var price = context.calculateOrderPrice(InputView.readPayments(nowSelectedTable));
+        var nowSelectedTable = InputView.readTable();
+
+        OutputView.printOrderList(context.findOrderByTable(nowSelectedTable));
+
+        var price = context.calculateOrderPrice(InputView.readPayments(nowSelectedTable), nowSelectedTable);
 
         OutputView.printFinalPaymentAmount(price);
-
-        context.initializeOrders();
+        context.initializeOrders(nowSelectedTable);
         return new SelectMenuStatus();
     }
 

@@ -7,12 +7,15 @@ import view.OutputView;
 public class SetOrderStatus implements OrderSystemStatus {
     @Override
     public OrderSystemStatus next(OrderSystemContext context) {
+        OutputView.printTables(context.findAllTable(), context.findOrderedTableNumbers());
+
+        var selectedTable = InputView.readTable();
         OutputView.printMenus(context.findAllMenu());
 
         var menu = context.findMenuById(InputView.readMenu());
         var quantity = InputView.readQuantity();
 
-        context.orderMenu(menu, quantity);
+        context.orderMenu(menu, quantity, selectedTable);
         return new SelectMenuStatus();
     }
 

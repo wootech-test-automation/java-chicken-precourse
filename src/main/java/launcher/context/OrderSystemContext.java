@@ -13,15 +13,11 @@ import domain.table.TableRepository;
 import java.util.List;
 
 public class OrderSystemContext {
-    private Table selectedTable;
 
     public List<Table> findAllTable() {
         return TableRepository.tables();
     }
 
-    public void selectTable(Table table) {
-        this.selectedTable = TableRepository.findByTable(table);
-    }
 
     public List<Menu> findAllMenu() {
         return MenuRepository.menus();
@@ -31,12 +27,12 @@ public class OrderSystemContext {
         return MenuRepository.findById(id);
     }
 
-    public void orderMenu(Menu menu, Quantity quantity) {
+    public void orderMenu(Menu menu, Quantity quantity, Table selectedTable) {
         var order = new Order(quantity, menu);
         OrderRepository.setOrder(selectedTable, order);
     }
 
-    public Orders findOrderByTable() {
+    public Orders findOrderByTable(Table selectedTable) {
         return OrderRepository.findOrdersByTable(selectedTable);
     }
 
@@ -44,18 +40,15 @@ public class OrderSystemContext {
         return OrderRepository.findOrderedTables();
     }
 
-    public Money calculateOrderPrice(Payment payment) {
+    public Money calculateOrderPrice(Payment payment, Table selectedTable) {
         return OrderRepository.findOrdersByTable(selectedTable)
                 .calculateAll()
                 .discount(payment.getDiscountPolicy());
     }
 
-    public void initializeOrders() {
+    public void initializeOrders(Table selectedTable) {
         OrderRepository.initializeByTable(selectedTable);
 
     }
 
-    public Table nowSelectedTable() {
-        return selectedTable;
-    }
 }

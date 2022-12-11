@@ -34,6 +34,14 @@ class OrdersTest {
         Assertions.assertThatThrownBy(() -> {
             orders.addOrder(new Order(new Quantity(60), new Menu(1, "1", Category.CHICKEN, 1)));
         }).isInstanceOf(InvalidInputException.class);
+    }
 
+    @Test
+    void 같은_상품을_등록하면_상품의_가격과_수량이추가된다() {
+        var orders = new Orders();
+        orders.addOrder(new Order(new Quantity(1), new Menu(1, "1", Category.CHICKEN, 10000)));
+        orders.addOrder(new Order(new Quantity(1), new Menu(1, "1", Category.CHICKEN, 10000)));
+        orders.addOrder(new Order(new Quantity(1), new Menu(1, "1", Category.CHICKEN, 10000)));
+        Assertions.assertThat(orders.calculateAll().result()).isEqualTo("30000원");
     }
 }
