@@ -5,7 +5,7 @@ import launcher.context.OrderSystemContext;
 public class InitStatus implements OrderSystemStatus {
     @Override
     public OrderSystemStatus next(OrderSystemContext context) {
-        return new QuitStatus();
+        return new SelectMenuStatus();
     }
 
     @Override
