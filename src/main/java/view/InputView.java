@@ -1,9 +1,9 @@
 package view;
 
 import camp.nextstep.edu.missionutils.Console;
-import domain.Quantity;
-import domain.Table;
 import domain.payment.Payment;
+import domain.quantity.Quantity;
+import domain.table.Table;
 import exception.InvalidInputException;
 import java.util.NoSuchElementException;
 import launcher.code.MainMenu;
