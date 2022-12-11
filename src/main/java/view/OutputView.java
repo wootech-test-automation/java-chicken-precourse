@@ -3,7 +3,6 @@ package view;
 import domain.Menu;
 import domain.Order;
 import domain.Table;
-
 import java.util.List;
 
 public class OutputView {
@@ -15,11 +14,11 @@ public class OutputView {
     private static final String ORDER = "1 - 주문등록";
     private static final String PAYMENT = "2 - 결제하기";
     private static final String QUIT = "3 - 프로그램 종료";
-    public static final String TABLE_LIST = "## 테이블 목록";
-    public static final String ORDER_LIST = "## 주문 내역";
-    public static final String ORDER_INFORMATION = "메뉴 수량 금액";
-    public static final String PAY_AMOUNT = "%d원\n";
-    public static final String FINAL_PAY_AMOUNT_MESSAGE = "## 최종 결제할 금액";
+    private static final String TABLE_LIST = "## 테이블 목록";
+    private static final String ORDER_LIST = "## 주문 내역";
+    private static final String ORDER_INFORMATION = "메뉴 수량 금액";
+    private static final String PAY_AMOUNT = "%d원\n";
+    private static final String FINAL_PAY_AMOUNT_MESSAGE = "## 최종 결제할 금액";
 
     public static void printTables(final List<Table> tables) {
         System.out.println();
