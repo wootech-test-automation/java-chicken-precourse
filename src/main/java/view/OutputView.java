@@ -9,7 +9,7 @@ import java.util.List;
 public class OutputView {
     private static final String TOP_LINE = "┏ - ┓";
     private static final String TABLE_FORMAT = "| %s |";
-    private static final String BOTTOM_LINE = "┗ %s ┛";
+    private static final String BOTTOM_LINE = "┗ - ┛";
     private static final String BOTTOM_LINE_ORDERED = "┗ # ┛";
     private static final String MAIN_MENU = "## 메인화면";
     private static final String ORDER = "1 - 주문등록";

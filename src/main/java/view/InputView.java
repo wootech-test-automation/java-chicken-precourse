@@ -1,7 +1,7 @@
 package view;
 
+import camp.nextstep.edu.missionutils.Console;
 import controller.dto.MenuSelectDto;
-import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
@@ -16,21 +16,21 @@ public class InputView {
     public static String inputTableNumber() {
         System.out.println();
         System.out.println(TABLE_SELECT);
-        return scanner.next();
+        return Console.readLine();
     }
 
     public static String inputMain() {
         System.out.println(FUNCTION_SELECT);
-        return scanner.next();
+        return Console.readLine();
     }
 
     public static MenuSelectDto inputMenu() {
         System.out.println();
         System.out.println(MENU_ORDER);
-        String menu = scanner.next();
+        String menu = Console.readLine();
         System.out.println();
         System.out.println(QUANTITY);
-        String quantity = scanner.next();
+        String quantity = Console.readLine();
 
         return new MenuSelectDto(menu, quantity);
     }
@@ -39,6 +39,6 @@ public class InputView {
         System.out.println();
         System.out.printf(PAYMENT_PROCESS, tableNumber);
         System.out.println(PAYMENT_TOOLS);
-        return scanner.next();
+        return Console.readLine();
     }
 }
