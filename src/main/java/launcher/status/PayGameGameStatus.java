@@ -19,6 +19,7 @@ public class PayGameGameStatus extends AbstractChickenGameStatus {
     public ChickenGameStatus process() {
         List<Order> orders = chickenGame.getOrders(table);
         outputView.printOrders(orders);
+        outputView.printPayTable(table);
         PaymentType paymentType = inputView.inputPay();
         int calculatePrice = chickenGame.calculatePrice(paymentType, orders);
         outputView.printPrice(calculatePrice);
