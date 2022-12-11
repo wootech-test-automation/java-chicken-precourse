@@ -69,4 +69,8 @@ public class OutputView extends View {
         print(String.format("%d원", calculatePrice));
         printEmptyLine();
     }
+
+    public void printPayTable(Table table) {
+        print(String.format("## %d번 테이블의 결제를 진행합니다.", table.getNumber()));
+    }
 }
