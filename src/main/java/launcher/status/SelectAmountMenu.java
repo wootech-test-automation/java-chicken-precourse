@@ -20,7 +20,7 @@ public class SelectAmountMenu extends AbstractChickenGameStatus {
     @Override
     public ChickenGameStatus process() {
         Amount amount = inputView.inputAmount();
-        Order order = new Order(table, menu, amount);
+        Order order = new Order(new Table(table.getNumber(), true), menu, amount);
         chickenGame.saveOrder(order);
         return new MainMenuGameStatus(context);
     }
