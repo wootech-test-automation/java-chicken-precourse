@@ -10,7 +10,7 @@ public class MenuService {
         return MenuRepository.menus();
     }
 
-    public void findMenu(final int menu) {
-//        return MenuRepository.findMenuByNumber(menu);
+    public Menu findMenu(final int menuNumber) {
+        return MenuRepository.findMenuByNumber(menuNumber);
     }
 }
