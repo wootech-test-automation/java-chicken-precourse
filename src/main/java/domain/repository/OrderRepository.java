@@ -39,4 +39,11 @@ public class OrderRepository {
     private static boolean isExistsOrder(final Order order) {
         return orders.contains(order);
     }
+
+    public static void removeAllByTableNumber(final int tableNumber) {
+        List<Order> collect = orders.stream()
+                .filter(order -> order.containsTableNumber(tableNumber))
+                .collect(Collectors.toList());
+        orders.removeAll(collect);
+    }
 }
