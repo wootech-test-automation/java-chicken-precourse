@@ -1,7 +1,7 @@
 package domain.payment;
 
+import domain.discount.policy.Discount;
 import domain.discount.policy.DiscountCashPolicy;
-import domain.discount.policy.DiscountPolicy;
 import domain.discount.policy.ZeroDiscountPolicy;
 import exception.InvalidInputException;
 import java.util.Arrays;
@@ -13,10 +13,10 @@ public enum Payment {
 
     private final String command;
     private final String message;
-    private final DiscountPolicy discountPolicy;
+    private final Discount discountPolicy;
 
 
-    Payment(String command, String message, DiscountPolicy discountPolicy) {
+    Payment(String command, String message, Discount discountPolicy) {
         this.command = command;
         this.message = message;
         this.discountPolicy = discountPolicy;
@@ -35,7 +35,7 @@ public enum Payment {
                 .collect(Collectors.joining(","));
     }
 
-    public DiscountPolicy getDiscountPolicy() {
+    public Discount getDiscountPolicy() {
         return discountPolicy;
     }
 }
