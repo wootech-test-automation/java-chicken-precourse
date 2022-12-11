@@ -16,6 +16,7 @@ public class OutputView {
     public static final String TABLE_LIST = "## 테이블 목록";
 
     public static void printTables(final List<Table> tables) {
+        System.out.println();
         System.out.println(TABLE_LIST);
         final int size = tables.size();
         printLine(TOP_LINE, size);
@@ -53,5 +54,6 @@ public class OutputView {
 
     public static void printMessage(final String message) {
         System.out.println(message);
+        System.out.println();
     }
 }

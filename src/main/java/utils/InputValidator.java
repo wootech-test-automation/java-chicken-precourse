@@ -16,4 +16,20 @@ public class InputValidator {
         }
         return Integer.parseInt(userInput);
     }
+
+    public static int validateTableNumber(final String userInput, final int tableSize) {
+        int tableNumber = validateNumber(userInput);
+        if (tableNumber < 1 || tableNumber > tableSize) {
+            throw new IllegalArgumentException(ErrorMessage.OUT_BOUNDS_TABLE_NUMBER);
+        }
+        return tableNumber;
+    }
+
+    private static int validateNumber(final String inputTableNumber) {
+        try {
+            return Integer.parseInt(inputTableNumber);
+        } catch (NumberFormatException exception) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMERIC_ERROR);
+        }
+    }
 }
