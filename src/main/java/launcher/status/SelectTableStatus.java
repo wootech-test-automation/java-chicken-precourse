@@ -14,9 +14,10 @@ public class SelectTableStatus implements OrderSystemStatus {
 
     @Override
     public OrderSystemStatus next(OrderSystemContext context) {
-        OutputView.printTables(context.findAllTable());
-        var table = InputView.readTable();
-        context.selectTable(table);
+
+        OutputView.printTables(context.findAllTable(), context.findOrderedTableNumbers());
+
+        context.selectTable(InputView.readTable());
         return nextStatus;
     }
 
