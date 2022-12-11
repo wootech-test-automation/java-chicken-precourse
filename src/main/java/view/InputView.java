@@ -59,7 +59,8 @@ public class InputView extends IoPrinter {
         return new Quantity(readLineToInteger());
     }
 
-    public static Payment readPayments() {
+    public static Payment readPayments(Table nowSelectedTable) {
+        printTitle(String.format("%s번 테이블의 결제를 진행합니다", nowSelectedTable.number()));
         printTitle(Payment.messages());
         return Payment.from(readLineAfterNewLine());
     }

@@ -54,4 +54,8 @@ public class OrderSystemContext {
         OrderRepository.initializeByTable(selectedTable);
 
     }
+
+    public Table nowSelectedTable() {
+        return selectedTable;
+    }
 }

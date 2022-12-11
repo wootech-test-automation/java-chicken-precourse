@@ -17,7 +17,7 @@ public class OutputView extends IoPrinter {
     public static void printTables(final List<Table> tables, List<Integer> orderedTableNumbers) {
         printTitle("테이블 목록");
         printTable(tables, orderedTableNumbers);
-
+        println();
     }
 
     private static void printTable(List<Table> tables, List<Integer> orderedTableNumbers) {
@@ -44,6 +44,7 @@ public class OutputView extends IoPrinter {
         for (final Menu menu : menus) {
             System.out.println(menu);
         }
+        println();
     }
 
     private static void printLine(final String line, final int count) {
@@ -64,11 +65,13 @@ public class OutputView extends IoPrinter {
         printTitle("주문 내역");
         println("메뉴 수량 금액");
         println(orders.result());
+        println();
     }
 
     public static void printFinalPaymentAmount(Money price) {
         printTitle("최종 결제 금액");
         println(price.result());
+        println();
     }
 
     public static void error(String message) {
