@@ -124,6 +124,53 @@
 ...
 ```
 
-- 참고 블로그 및 깃허브
+## 프로그래밍 요구사항
+
+### TableRepository, MenuRepository
+```java
+public class TableRepository {
+    private static final List<Table> tables = new ArrayList<>();
+
+    static {
+        tables.add(new Table(1));
+        tables.add(new Table(2));
+        tables.add(new Table(3));
+        tables.add(new Table(5));
+        tables.add(new Table(6));
+        tables.add(new Table(8));
+    }
+
+    public static List<Table> tables() {
+        return Collections.unmodifiableList(tables);
+    }
+}
+```
+- 접근 제어자를 변경할 수 없다.
+- 메서드 이름과 인수를 변경하지 않는다.
+- 패키지 변경 및 필요한 메서드 추가는 가능하다.
+
+### Table, Menu
+```java
+public class Table {
+    private final int number;
+
+    public Table(final int number) {
+        this.number = number;
+    }
+
+    @Override
+    public String toString() {
+        return Integer.toString(number);
+    }
+}
+```
+- 접근 제어자를 수정하지 않는다.
+- setter를 사용하지 않는다.
+- 메서드 이름, 인자, 리턴값을 변경할 수 없다.
+- 기본 생성자를 생성하지 않는다.
+- 패키지 변경 및 필요한 메서드 추가는 가능하다.
+
+
+## 참고 블로그 및 깃허브
   - [블로그](https://velog.io/@kouz/%EC%9A%B0%EC%95%84%ED%95%9C-%ED%85%8C%ED%81%AC%EC%BD%94%EC%8A%A4-2%EA%B8%B0-%EC%98%A4%ED%94%84%EB%9D%BC%EC%9D%B8-%EC%BD%94%EB%94%A9%ED%85%8C%EC%8A%A4%ED%8A%B8-%EB%A6%AC%EB%B7%B0-%EB%B0%98%EC%84%B1-3dk4pax3p7)
   - [깃허브](https://github.com/KJunseo/java-chicken-2019/tree/KJunseo)
