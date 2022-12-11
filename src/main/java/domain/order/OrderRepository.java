@@ -2,6 +2,7 @@ package domain.order;
 
 import domain.table.Table;
 import domain.table.TableRepository;
+import exception.InvalidInputException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,16 +16,17 @@ public class OrderRepository {
     }
 
     public static void setOrder(final Table table, final Order order) {
-        findOrdersByTable(table).addOrder(order);
-    }
-
-    private static Orders findOrdersByTable(final Table table) {
-        return tableByOrders.get(table);
+        var orders = tableByOrders.get(table);
+        orders.addOrder(order);
     }
 
 
-    public static Orders findOrderByTable(Table selectedTable) {
-        return tableByOrders.get(selectedTable);
+    public static Orders findOrdersByTable(Table selectedTable) {
+        var orders = tableByOrders.get(selectedTable);
+        if (orders.isRegisterOrder()) {
+            return orders;
+        }
+        throw new InvalidInputException("해당 테이블에는 주문이 존재하지 않습니다.");
     }
 
     public static List<Integer> findOrderedTables() {
