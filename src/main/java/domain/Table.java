@@ -15,6 +15,11 @@ public class Table {
     public boolean isOrdered() {
         return ordered;
     }
+
+    public boolean contains(final int number) {
+        return this.number == number;
+    }
+
     @Override
     public String toString() {
         return Integer.toString(number);

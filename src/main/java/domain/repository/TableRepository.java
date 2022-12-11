@@ -20,4 +20,11 @@ public class TableRepository {
     public static List<Table> tables() {
         return Collections.unmodifiableList(tables);
     }
+
+    public static Table findByNumber(final int tableNumber) {
+        return tables.stream()
+                .filter(table -> table.contains(tableNumber))
+                .findAny()
+                .get();
+    }
 }
