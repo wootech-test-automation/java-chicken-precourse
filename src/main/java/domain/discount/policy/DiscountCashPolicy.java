@@ -1,8 +1,12 @@
 package domain.discount.policy;
 
-public class DiscountCashPolicy extends DiscountPolicy {
+import domain.discount.Money;
 
-    public DiscountCashPolicy() {
-        super(10L);
+public class DiscountCashPolicy implements Discount {
+
+    @Override
+    public Money discount(Money money) {
+        final var amount = money.amount();
+        return new Money(amount - (amount / 10L));
     }
 }
