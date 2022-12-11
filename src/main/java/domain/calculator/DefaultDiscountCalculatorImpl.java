@@ -20,7 +20,7 @@ public class DefaultDiscountCalculatorImpl implements DiscountCalculator {
     }
 
     private int discount(int totalPrice, int totalChickenCount) {
-        int discountPrice = (totalChickenCount % 10) * 10_000;
+        int discountPrice = (totalChickenCount / 10) * 10_000;
         return totalPrice - discountPrice;
     }
 
