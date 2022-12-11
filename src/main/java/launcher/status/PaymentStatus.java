@@ -11,8 +11,9 @@ public class PaymentStatus implements OrderSystemStatus {
 
         var price = context.calculateOrderPrice(InputView.readPayments());
 
+        context.initializeOrders();
         OutputView.printFinalPaymentAmount(price);
-        
+
         return new SelectMenuStatus();
     }
 

@@ -49,4 +49,9 @@ public class OrderSystemContext {
                 .calculateAll()
                 .discount(payment.getDiscountPolicy());
     }
+
+    public void initializeOrders() {
+        OrderRepository.initializeByTable(selectedTable);
+
+    }
 }

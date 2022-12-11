@@ -35,4 +35,8 @@ public class OrderRepository {
                 .map(tableOrdersEntry -> tableOrdersEntry.getKey().number())
                 .collect(Collectors.toList());
     }
+
+    public static void initializeByTable(Table selectedTable) {
+        tableByOrders.put(selectedTable, new Orders());
+    }
 }
