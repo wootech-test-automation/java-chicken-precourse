@@ -45,7 +45,7 @@ public class InputView extends IoPrinter {
         try {
             return Integer.parseInt(readLineAfterNewLine());
         } catch (Exception exception) {
-            throw new InvalidInputException("테이블은 정수만 입력할 수 있습니다.");
+            throw new InvalidInputException("정수만 입력할 수 있습니다.");
         }
     }
 
