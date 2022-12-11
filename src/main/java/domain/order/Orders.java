@@ -2,6 +2,7 @@ package domain.order;
 
 import domain.category.Category;
 import domain.discount.Money;
+import domain.discount.policy.CountPerDiscountPolicy;
 import exception.InvalidInputException;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,8 +10,7 @@ import java.util.stream.Collectors;
 
 public class Orders {
     private static final int MAX_AMOUNT = 99;
-    private static final String ORDER_COLUMN_FORMAT = "메뉴 수량 금액";
-    
+
     private final List<Order> orders = new ArrayList<>();
 
     public void addOrder(Order order) {
@@ -26,17 +26,29 @@ public class Orders {
     }
 
     public String result() {
-        return ORDER_COLUMN_FORMAT + "\n" + orders.stream().map(Order::result).collect(Collectors.joining("\n"));
+        return orders.stream()
+                .map(Order::result)
+                .collect(Collectors.joining("\n"));
     }
 
     public Money calculateAll() {
-        var chickenPrice = orders.stream().filter(order -> order.existCategory(Category.CHICKEN)).mapToInt(Order::price)
-                .sum();
-        var count = (int) orders.stream().filter(order -> order.existCategory(Category.CHICKEN)).count();
-        var discountChickenPrice = chickenPrice - count / 10 * 10000;
-        var beveragePrice = orders.stream().filter(order -> order.existCategory(Category.BEVERAGE))
-                .mapToInt(Order::price).sum();
-        return new Money(discountChickenPrice + beveragePrice);
+        return new Money(0L)
+                .addMoney(calculateByCategory(Category.CHICKEN))
+                .discount(new CountPerDiscountPolicy(calculateCountByCategory(Category.CHICKEN)))
+                .addMoney(calculateByCategory(Category.BEVERAGE));
+    }
+
+    private Long calculateCountByCategory(Category category) {
+        return orders.stream()
+                .filter(order -> order.existCategory(category))
+                .count();
+    }
+
+    private Money calculateByCategory(Category category) {
+        return new Money(orders.stream()
+                .filter(order -> order.existCategory(category))
+                .mapToInt(Order::price).sum()
+        );
     }
 
     public boolean isRegisterOrder() {
