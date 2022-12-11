@@ -6,8 +6,8 @@ import domain.quantity.Quantity;
 
 public class Order {
     private static final String ORDER_RESULT_FORMAT = "%s %s %s";
-    private final Quantity quantity;
     private final Menu menu;
+    private Quantity quantity;
 
     public Order(Quantity quantity, Menu menu) {
         this.quantity = quantity;
@@ -15,7 +15,7 @@ public class Order {
     }
 
     public String result() {
-        return String.format(ORDER_RESULT_FORMAT, menu.getName(), quantity.number(), menu.price());
+        return String.format(ORDER_RESULT_FORMAT, menu.getName(), quantity.number(), this.price());
     }
 
     public int price() {
@@ -28,5 +28,13 @@ public class Order {
 
     public int getQuantity() {
         return quantity.number();
+    }
+
+    public boolean sameName(Order targetOrder) {
+        return menu.equals(targetOrder.menu);
+    }
+
+    public void addQuantity(Order targetOrder) {
+        this.quantity = this.quantity.add(targetOrder.quantity);
     }
 }

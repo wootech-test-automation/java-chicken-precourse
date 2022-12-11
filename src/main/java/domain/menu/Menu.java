@@ -1,6 +1,7 @@
 package domain.menu;
 
 import domain.category.Category;
+import java.util.Objects;
 
 public class Menu {
     private final int number;
@@ -34,5 +35,23 @@ public class Menu {
 
     public boolean sameCategory(Category category) {
         return this.category == category;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Menu menu = (Menu) o;
+        return number == menu.number && price == menu.price && Objects.equals(getName(), menu.getName())
+                && category == menu.category;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(number, getName(), category, price);
     }
 }

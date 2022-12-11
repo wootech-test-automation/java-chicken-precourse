@@ -28,4 +28,8 @@ public class Quantity {
     public int number() {
         return this.number;
     }
+
+    public Quantity add(Quantity quantity) {
+        return new Quantity(number + quantity.number);
+    }
 }

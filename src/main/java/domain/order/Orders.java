@@ -13,9 +13,15 @@ public class Orders {
 
     private final List<Order> orders = new ArrayList<>();
 
-    public void addOrder(Order order) {
-        validateGreaterThanMaxQuantity(sumAllQuantity() + order.getQuantity());
-        this.orders.add(order);
+    public void addOrder(Order targetOrder) {
+        validateGreaterThanMaxQuantity(sumAllQuantity() + targetOrder.getQuantity());
+        var findResult = orders.stream().filter(order -> order.sameName(targetOrder)).findAny();
+
+        if (findResult.isPresent()) {
+            findResult.get().addQuantity(targetOrder);
+            return;
+        }
+        orders.add(targetOrder);
     }
 
     private void validateGreaterThanMaxQuantity(int amount) {
