@@ -2,7 +2,7 @@ package domain.order;
 
 import domain.table.Table;
 import domain.table.TableRepository;
-import exception.InvalidInputException;
+import exception.DidNotExistsOrders;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +26,7 @@ public class OrderRepository {
         if (orders.isRegisterOrder()) {
             return orders;
         }
-        throw new InvalidInputException("해당 테이블에는 주문이 존재하지 않습니다.");
+        throw new DidNotExistsOrders("해당 테이블에는 주문이 존재하지 않습니다.");
     }
 
     public static List<Integer> findOrderedTables() {
