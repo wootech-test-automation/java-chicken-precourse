@@ -1,5 +1,6 @@
-package domain;
+package domain.table;
 
+import exception.InvalidInputException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -18,5 +19,11 @@ public class TableRepository {
 
     public static List<Table> tables() {
         return Collections.unmodifiableList(tables);
+    }
+
+    public static Table findByTable(Table targetTable) {
+        return tables().stream().filter(table -> table.equals(targetTable))
+                .findAny()
+                .orElseThrow(() -> new InvalidInputException("존재하지 않는 테이블입니다."));
     }
 }

@@ -1,4 +1,4 @@
-package domain;
+package domain.quantity;
 
 import exception.InvalidInputException;
 
@@ -23,5 +23,9 @@ public class Quantity {
         if (input < MIN_NUMBER) {
             throw new InvalidInputException("수량은 1보다 작을 수 없습니다.");
         }
+    }
+
+    public int number() {
+        return this.number;
     }
 }

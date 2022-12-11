@@ -1,5 +1,7 @@
-package domain;
+package domain.menu;
 
+import domain.category.Category;
+import exception.InvalidInputException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -20,5 +22,11 @@ public class MenuRepository {
 
     public static List<Menu> menus() {
         return Collections.unmodifiableList(menus);
+    }
+
+    public static Menu findById(int id) {
+        return menus.stream().filter(menu -> menu.sameId(id))
+                .findAny()
+                .orElseThrow(() -> new InvalidInputException("존재하지 않는 메뉴입니다."));
     }
 }

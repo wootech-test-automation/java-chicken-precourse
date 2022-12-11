@@ -1,4 +1,6 @@
-package domain;
+package domain.menu;
+
+import domain.category.Category;
 
 public class Menu {
     private final int number;
@@ -16,5 +18,21 @@ public class Menu {
     @Override
     public String toString() {
         return category + " " + number + " - " + name + " : " + price + "원";
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int price() {
+        return price;
+    }
+
+    public boolean sameId(int id) {
+        return number == id;
+    }
+
+    public boolean sameCategory(Category category) {
+        return this.category == category;
     }
 }
