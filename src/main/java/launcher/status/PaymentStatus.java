@@ -8,10 +8,11 @@ public class PaymentStatus implements OrderSystemStatus {
     @Override
     public OrderSystemStatus next(OrderSystemContext context) {
         OutputView.printOrderList();
-        var price = context.findOrderByTable()
-                .calculateAll()
-                .discount(InputView.readPayments());
+
+        var price = context.calculateOrderPrice(InputView.readPayments());
+
         OutputView.printFinalPaymentAmount(price);
+        
         return new SelectMenuStatus();
     }
 
