@@ -1,8 +1,11 @@
 package domain.discount.policy;
 
-public class ZeroDiscountPolicy extends DiscountPolicy {
+import domain.discount.Money;
 
-    public ZeroDiscountPolicy() {
-        super(0L);
+public class ZeroDiscountPolicy implements Discount {
+
+    @Override
+    public Money discount(Money money) {
+        return money;
     }
 }
