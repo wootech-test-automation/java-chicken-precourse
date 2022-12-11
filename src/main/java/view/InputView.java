@@ -25,7 +25,9 @@ public class InputView extends View {
     public MainFeatureKeyword inputMainFeature() {
         print(REQUEST_MAIN_FEATURE);
         String line = Console.readLine();
-        return MainFeatureKeyword.keywordOf(line);
+        MainFeatureKeyword mainFeatureKeyword = MainFeatureKeyword.keywordOf(line);
+        printEmptyLine();
+        return mainFeatureKeyword;
     }
 
 
@@ -33,7 +35,9 @@ public class InputView extends View {
         try {
             print(REQUEST_TABLE_NUMBER);
             int number = Integer.parseInt(Console.readLine());
-            return new Table(number);
+            Table table =  new Table(number);
+            printEmptyLine();
+            return table;
         } catch (IllegalFormatException e) {
             throw new IllegalInputArgumentException(NUMBER_FORMAT_MESSAGE);
         }
@@ -42,7 +46,9 @@ public class InputView extends View {
     public int inputMenu() {
         try {
             print(REQUEST_MENU_NUMBER);
-            return Integer.parseInt(Console.readLine());
+            int number = Integer.parseInt(Console.readLine());
+            printEmptyLine();
+            return number;
         } catch (IllegalFormatException e) {
             throw new IllegalInputArgumentException(NUMBER_FORMAT_MESSAGE);
         }
@@ -52,6 +58,7 @@ public class InputView extends View {
         try {
             print(REQUEST_AMOUNT_NUMBER);
             int number = Integer.parseInt(Console.readLine());
+            printEmptyLine();
             return new Amount(number);
         } catch (IllegalFormatException e) {
             throw new IllegalInputArgumentException(NUMBER_FORMAT_MESSAGE);
@@ -60,6 +67,8 @@ public class InputView extends View {
 
     public PaymentType inputPay() {
         String line = Console.readLine();
-        return PaymentType.keywordOf(line);
+        PaymentType paymentType = PaymentType.keywordOf(line);
+        printEmptyLine();
+        return paymentType;
     }
 }
