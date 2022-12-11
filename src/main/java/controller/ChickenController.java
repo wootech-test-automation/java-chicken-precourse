@@ -55,6 +55,7 @@ public class ChickenController {
     private void requestOrder(final int tableNumber) {
         try {
             orderService.order(requestInputMenu(), tableNumber);
+            run();
         } catch (IllegalArgumentException exception) {
             OutputView.printMessage(exception.getMessage());
             requestOrder(tableNumber);

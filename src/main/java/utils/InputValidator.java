@@ -6,6 +6,12 @@ public class InputValidator {
     public static final String ORDER_NUMBER = "1";
     public static final String PAYMENT_NUMBER = "2";
     public static final String QUIT_NUMBER = "3";
+    public static final int TABLE_ONE = 1;
+    public static final int TABLE_TWO = 2;
+    public static final int TABLE_THREE = 3;
+    public static final int TABLE_FIVE = 5;
+    public static final int TABLE_SIX = 6;
+    public static final int TABLE_EIGHT = 8;
 
     private InputValidator() {
     }
@@ -19,7 +25,12 @@ public class InputValidator {
 
     public static int validateTableNumber(final String userInput, final int tableSize) {
         int tableNumber = validateNumber(userInput);
-        if (tableNumber < 1 || tableNumber > tableSize) {
+        if (tableNumber != TABLE_ONE
+                && tableNumber != TABLE_TWO
+                && tableNumber != TABLE_THREE
+                && tableNumber != TABLE_FIVE
+                && tableNumber != TABLE_SIX
+                && tableNumber != TABLE_EIGHT) {
             throw new IllegalArgumentException(ErrorMessage.OUT_BOUNDS_TABLE_NUMBER);
         }
         return tableNumber;
