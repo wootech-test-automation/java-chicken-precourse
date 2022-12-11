@@ -1,5 +1,7 @@
 package launcher.status;
 
+import domain.table.Table;
+import exception.InvalidInputException;
 import launcher.context.OrderSystemContext;
 import view.InputView;
 import view.OutputView;
@@ -10,13 +12,21 @@ public class SetOrderStatus implements OrderSystemStatus {
         OutputView.printTables(context.findAllTable(), context.findOrderedTableNumbers());
 
         var selectedTable = InputView.readTable();
-        OutputView.printMenus(context.findAllMenu());
+        return process(context, selectedTable);
+    }
 
-        var menu = context.findMenuById(InputView.readMenu());
-        var quantity = InputView.readQuantity();
-
-        context.orderMenu(menu, quantity, selectedTable);
-        return new SelectMenuStatus();
+    private OrderSystemStatus process(OrderSystemContext context, Table selectedTable) {
+        while (true) {
+            try {
+                OutputView.printMenus(context.findAllMenu());
+                var menu = context.findMenuById(InputView.readMenu());
+                var quantity = InputView.readQuantity();
+                context.orderMenu(menu, quantity, selectedTable);
+                return new SelectMenuStatus();
+            } catch (InvalidInputException exception) {
+                OutputView.error(exception.getMessage());
+            }
+        }
     }
 
     @Override
