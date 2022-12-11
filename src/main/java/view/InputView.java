@@ -21,6 +21,7 @@ public class InputView extends View {
     private static final String REQUEST_TABLE_NUMBER = "## 테이블을 선택하세요.";
     private static final String REQUEST_MENU_NUMBER = "## 등록할 메뉴를 선택하세요.";
     private static final String REQUEST_AMOUNT_NUMBER = "## 메뉴의 수량을 입력하세요.";
+    private static final String REQUEST_PAY = "## 신용 카드는 1번, 현금은 2번";
 
     public MainFeatureKeyword inputMainFeature() {
         print(REQUEST_MAIN_FEATURE);
@@ -66,6 +67,7 @@ public class InputView extends View {
     }
 
     public PaymentType inputPay() {
+        print(REQUEST_PAY);
         String line = Console.readLine();
         PaymentType paymentType = PaymentType.keywordOf(line);
         printEmptyLine();
