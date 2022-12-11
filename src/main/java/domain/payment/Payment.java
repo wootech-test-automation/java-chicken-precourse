@@ -1,20 +1,25 @@
 package domain.payment;
 
+import domain.discount.policy.DiscountCashPolicy;
+import domain.discount.policy.DiscountPolicy;
+import domain.discount.policy.ZeroDiscountPolicy;
 import exception.InvalidInputException;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
 public enum Payment {
-    CARD("1", "신용 카드"),
-    CASH("2", "현금");
+    CARD("1", "신용 카드", new ZeroDiscountPolicy()),
+    CASH("2", "현금", new DiscountCashPolicy());
 
     private final String command;
     private final String message;
+    private final DiscountPolicy discountPolicy;
 
 
-    Payment(String command, String message) {
+    Payment(String command, String message, DiscountPolicy discountPolicy) {
         this.command = command;
         this.message = message;
+        this.discountPolicy = discountPolicy;
     }
 
     public static Payment from(final String input) {
@@ -28,5 +33,9 @@ public enum Payment {
         return Arrays.stream(values())
                 .map(payment -> String.format("%s는 %s번", payment.message, payment.command))
                 .collect(Collectors.joining(","));
+    }
+
+    public DiscountPolicy getDiscountPolicy() {
+        return discountPolicy;
     }
 }
