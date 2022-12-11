@@ -1,7 +1,13 @@
 package controller;
 
+import controller.dto.MenuSelectDto;
+import domain.Menu;
+import domain.Order;
 import domain.Table;
 import java.util.List;
+import org.mockito.internal.matchers.Or;
+import service.MenuService;
+import service.OrderService;
 import service.TableService;
 import utils.InputValidator;
 import view.InputView;
@@ -12,6 +18,8 @@ public class ChickenController {
     public static final int PAYMENT = 2;
 
     private final TableService tableService = new TableService();
+    private final MenuService menuService = new MenuService();
+    private final OrderService orderService = new OrderService();
 
     public void run() {
         try {
@@ -44,10 +52,21 @@ public class ChickenController {
         }
     }
 
-    private void requestPayment(final int tableNumber) {
-
-    }
-
     private void requestOrder(final int tableNumber) {
+        try {
+            orderService.order(requestInputMenu(), tableNumber);
+        } catch (IllegalArgumentException exception) {
+            OutputView.printMessage(exception.getMessage());
+            requestOrder(tableNumber);
+        }
     }
+
+    private MenuSelectDto requestInputMenu() {
+        OutputView.printMenus(menuService.finaAllCurrentMenus());
+        return InputView.inputMenu();
+    }
+
+    private void requestPayment(final int tableNumber) {
+    }
+
 }
