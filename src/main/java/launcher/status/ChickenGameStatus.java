@@ -2,7 +2,7 @@ package launcher.status;
 
 public interface ChickenGameStatus {
 
-    void process();
+    ChickenGameStatus process();
 
     default boolean isRunnable() {
         return true;
