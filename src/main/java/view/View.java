@@ -7,6 +7,7 @@ public class View {
     protected void print(String message) {
         System.out.println(message);
     }
+
     protected void print(Object object) {
         System.out.println(object);
     }
@@ -20,6 +21,6 @@ public class View {
     }
 
     protected void printError(String message) {
-        System.out.println(ERROR  + " " + message);
+        System.out.println(ERROR + " " + message);
     }
 }

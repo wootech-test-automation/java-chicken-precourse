@@ -3,7 +3,6 @@ package view;
 import domain.type.Menu;
 import domain.type.Order;
 import domain.type.Table;
-
 import java.util.List;
 
 public class OutputView extends View {
