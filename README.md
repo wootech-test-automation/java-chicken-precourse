@@ -1,3 +1,5 @@
+> 확인 부탁드립니다! https://ninth-steed-211.notion.site/c5b31174b60044c6868ba05a09509462
+
 # java-chicken-2019
 
 ## 미션 개요
