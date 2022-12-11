@@ -18,6 +18,8 @@ public class OutputView {
     public static final String TABLE_LIST = "## 테이블 목록";
     public static final String ORDER_LIST = "## 주문 내역";
     public static final String ORDER_INFORMATION = "메뉴 수량 금액";
+    public static final String PAY_AMOUNT = "%d원\n";
+    public static final String FINAL_PAY_AMOUNT_MESSAGE = "## 최종 결제할 금액";
 
     public static void printTables(final List<Table> tables) {
         System.out.println();
@@ -81,5 +83,12 @@ public class OutputView {
         for (Order order : orders) {
             System.out.println(order);
         }
+    }
+
+    public static void printPayAmount(final int payAmount) {
+        System.out.println();
+        System.out.println(FINAL_PAY_AMOUNT_MESSAGE);
+        System.out.printf(PAY_AMOUNT, payAmount);
+        System.out.println();
     }
 }

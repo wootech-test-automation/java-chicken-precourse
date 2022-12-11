@@ -85,8 +85,10 @@ public class ChickenController {
     }
 
     private void requestInputPayment(final int tableNumber) {
-        OutputView.printOrders(OrderService.findAllByTableNumber(tableNumber));
-        InputValidator.validatePayment(InputView.inputPaymentTools(tableNumber));
+        OutputView.printOrders(orderService.findAllByTableNumber(tableNumber));
+        int validatedPayment = InputValidator.validatePayment(InputView.inputPaymentTools(tableNumber));
+        OutputView.printPayAmount(orderService.payOrders(validatedPayment, tableNumber));
+        run();
     }
 
 }
