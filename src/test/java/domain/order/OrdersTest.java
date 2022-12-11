@@ -15,8 +15,7 @@ class OrdersTest {
         orders.addOrder(new Order(new Quantity(1), new Menu(1, "후라이드", Category.CHICKEN, 16000)));
         orders.addOrder(new Order(new Quantity(1), new Menu(2, "콜라", Category.BEVERAGE, 1000)));
         var actual = orders.result().split("\n");
-        Assertions.assertThat(actual[0]).isEqualTo("메뉴 수량 금액");
-        Assertions.assertThat(actual[1]).isEqualTo("후라이드 1 16000");
+        Assertions.assertThat(actual[0]).isEqualTo("후라이드 1 16000");
     }
 
     @Test
