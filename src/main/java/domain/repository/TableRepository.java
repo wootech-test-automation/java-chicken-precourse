@@ -20,4 +20,13 @@ public class TableRepository {
     public static List<Table> tables() {
         return Collections.unmodifiableList(tables);
     }
+
+    public static void setTable(Table table, boolean bool) {
+        for (int i = 0; i < tables.size(); ++i) {
+            Table existTable = tables.get(i);
+            if (existTable.equals(table)) {
+                tables.set(i, new Table(table.getNumber(), bool));
+            }
+        }
+    }
 }
