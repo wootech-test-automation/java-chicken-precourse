@@ -4,6 +4,7 @@ import controller.dto.MenuSelectDto;
 import domain.Menu;
 import domain.Order;
 import domain.Table;
+import exception.TableMenuEmptyException;
 import java.util.List;
 import org.mockito.internal.matchers.Or;
 import service.MenuService;
@@ -16,6 +17,7 @@ import view.OutputView;
 public class ChickenController {
     public static final int ORDER = 1;
     public static final int PAYMENT = 2;
+    public static final int QUIT = 3;
 
     private final TableService tableService = new TableService();
     private final MenuService menuService = new MenuService();
@@ -32,11 +34,17 @@ public class ChickenController {
     }
 
     private void determineMainMenuSelection(final int validatedMainSelect) {
+        if (validatedMainSelect == QUIT) {
+            return;
+        }
         try {
             requestTableNumber(validatedMainSelect);
         } catch (IllegalArgumentException exception) {
             OutputView.printMessage(exception.getMessage());
             determineMainMenuSelection(validatedMainSelect);
+        } catch (TableMenuEmptyException exception) {
+            OutputView.printMessage(exception.getMessage());
+            run();
         }
     }
 
