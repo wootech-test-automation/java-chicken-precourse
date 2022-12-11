@@ -7,16 +7,16 @@ import domain.type.Table;
 import java.util.List;
 
 public class OutputView extends View {
-    private static final String TOP_LINE = "┌ ─ ┐";
+    private static final String TOP_LINE = "┏ - ┓";
     private static final String TABLE_FORMAT = "| %s |";
-    private static final String BOTTOM_LINE = "└ ─ ┘";
+    private static final String BOTTOM_LINE = "┗ %s ┛";
 
     public void printTables(final List<Table> tables) {
         print("## 테이블 목록");
         final int size = tables.size();
         printLine(TOP_LINE, size);
         printTableNumbers(tables);
-        printLine(BOTTOM_LINE, size);
+        printBottomLine(tables);
         printEmptyLine();
     }
 
@@ -38,6 +38,16 @@ public class OutputView extends View {
 
     public void printError(String message) {
         super.printError(message);
+    }
+
+    private void printBottomLine(List<Table> tables) {
+        for (Table table : tables) {
+            if (table.isOrdered()) {
+                printf(BOTTOM_LINE, "#");
+                continue;
+            }
+            printf(BOTTOM_LINE, "-");
+        }
     }
 
     private void printLine(final String line, final int count) {
