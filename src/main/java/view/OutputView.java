@@ -9,6 +9,7 @@ public class OutputView {
     private static final String TOP_LINE = "┌ ─ ┐";
     private static final String TABLE_FORMAT = "| %s |";
     private static final String BOTTOM_LINE = "└ ─ ┘";
+    private static final String BOTTOM_LINE_ORDERED = "└ # ┘";
     private static final String MAIN_MENU = "## 메인화면";
     private static final String ORDER = "1 - 주문등록";
     private static final String PAYMENT = "2 - 결제하기";
@@ -21,8 +22,9 @@ public class OutputView {
         final int size = tables.size();
         printLine(TOP_LINE, size);
         printTableNumbers(tables);
-        printLine(BOTTOM_LINE, size);
+        printBottomLine(tables, size);
     }
+
 
     public static void printMenus(final List<Menu> menus) {
         System.out.println();
@@ -55,6 +57,17 @@ public class OutputView {
 
     public static void printMessage(final String message) {
         System.out.println(message);
+        System.out.println();
+    }
+
+    private static void printBottomLine(final List<Table> tables, final int count) {
+        for (int index = 0; index < count; index++) {
+            if (tables.get(index).isOrdered()) {
+                System.out.print(BOTTOM_LINE_ORDERED);
+                continue;
+            }
+            System.out.print(BOTTOM_LINE);
+        }
         System.out.println();
     }
 }
