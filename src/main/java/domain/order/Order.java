@@ -25,4 +25,8 @@ public class Order {
     public boolean existCategory(Category category) {
         return menu.sameCategory(category);
     }
+
+    public int getQuantity() {
+        return quantity.number();
+    }
 }
