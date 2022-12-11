@@ -16,6 +16,10 @@ public class Table {
         return ordered;
     }
 
+    public void orderReset() {
+        ordered = false;
+    }
+
     public boolean contains(final int number) {
         return this.number == number;
     }
@@ -24,4 +28,5 @@ public class Table {
     public String toString() {
         return Integer.toString(number);
     }
+
 }

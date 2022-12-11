@@ -13,4 +13,8 @@ public class TableService {
     public void addOrdered(final int tableNumber) {
         TableRepository.findByNumber(tableNumber).orderTable();
     }
+
+    public void removeOrderList(final int tableNumber) {
+        TableRepository.findByNumber(tableNumber).orderReset();
+    }
 }
