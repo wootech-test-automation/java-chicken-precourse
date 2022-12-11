@@ -1,13 +1,12 @@
 package domain.discount;
 
-import domain.discount.policy.DiscountPolicy;
-import domain.payment.Payment;
+import domain.discount.policy.Discount;
 
 public class Money {
     private final Long money;
 
     public Money(final int money) {
-        this.money = Long.valueOf(money);
+        this.money = (long) money;
     }
 
     public Money(final Long amount) {
@@ -18,7 +17,16 @@ public class Money {
         return String.format("%s원", money);
     }
 
-    public Money discount(Payment payment) {
-        return new Money(DiscountPolicy.discount(money, payment.getDiscountPolicy()));
+
+    public Money discount(Discount minusDiscount) {
+        return minusDiscount.discount(this);
+    }
+
+    public Long amount() {
+        return money;
+    }
+
+    public Money addMoney(Money amount) {
+        return new Money(this.money + amount.money);
     }
 }
