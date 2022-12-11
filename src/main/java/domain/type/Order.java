@@ -62,6 +62,6 @@ public class Order {
 
     @Override
     public String toString() {
-        return menu.getName() + " " + amount.intValue() + " " + menu.getPrice();
+        return menu.getName() + " " + amount.intValue() + " " + getTotalPrice();
     }
 }
