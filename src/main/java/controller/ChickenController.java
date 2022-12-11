@@ -68,6 +68,7 @@ public class ChickenController {
     }
 
     private void requestPayment(final int tableNumber) {
+        OutputView.printOrders(OrderService.findAllByTableNumber(tableNumber));
     }
 
 }

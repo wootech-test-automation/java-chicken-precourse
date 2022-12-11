@@ -74,4 +74,9 @@ public class Order {
     public int hashCode() {
         return Objects.hash(tableNumber, menuName);
     }
+
+    @Override
+    public String toString() {
+        return menuName + " " + quantity + " " + totalPrice;
+    }
 }
