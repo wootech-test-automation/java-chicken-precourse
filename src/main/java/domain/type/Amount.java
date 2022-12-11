@@ -17,7 +17,7 @@ public class Amount {
 
     private static void validateSize(int value) {
         if (value < MIN_VALUE || value > MAX_VALUE) {
-            throw new IllegalArgumentException(new IllegalInputArgumentException(ERROR_MESSAGE));
+            throw new IllegalInputArgumentException(ERROR_MESSAGE);
         }
     }
 
