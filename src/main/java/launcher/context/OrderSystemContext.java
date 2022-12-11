@@ -1,10 +1,12 @@
 package launcher.context;
 
+import domain.discount.Money;
 import domain.menu.Menu;
 import domain.menu.MenuRepository;
 import domain.order.Order;
 import domain.order.OrderRepository;
 import domain.order.Orders;
+import domain.payment.Payment;
 import domain.quantity.Quantity;
 import domain.table.Table;
 import domain.table.TableRepository;
@@ -21,10 +23,6 @@ public class OrderSystemContext {
         this.selectedTable = TableRepository.findByTable(table);
     }
 
-    public Table getNowSelectedTable() {
-        return selectedTable;
-    }
-
     public List<Menu> findAllMenu() {
         return MenuRepository.menus();
     }
@@ -33,20 +31,22 @@ public class OrderSystemContext {
         return MenuRepository.findById(id);
     }
 
-    public void purchaseQuantity(Quantity readStock) {
-
-    }
-
-    public void findAllOrderList() {
-
-    }
-
     public void orderMenu(Menu menu, Quantity quantity) {
         var order = new Order(quantity, menu);
         OrderRepository.setOrder(selectedTable, order);
     }
 
     public Orders findOrderByTable() {
-        return OrderRepository.findOrderByTable(selectedTable);
+        return OrderRepository.findOrdersByTable(selectedTable);
+    }
+
+    public List<Integer> findOrderedTableNumbers() {
+        return OrderRepository.findOrderedTables();
+    }
+
+    public Money calculateOrderPrice(Payment payment) {
+        return OrderRepository.findOrdersByTable(selectedTable)
+                .calculateAll()
+                .discount(payment.getDiscountPolicy());
     }
 }
