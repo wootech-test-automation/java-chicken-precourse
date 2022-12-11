@@ -5,8 +5,16 @@ import java.util.Objects;
 public class Table {
     private final int number;
 
-    public Table(final int number) {
+    private final boolean isOrdered;
+
+    public Table(int number) {
         this.number = number;
+        this.isOrdered = false;
+    }
+
+    public Table(int number, boolean isOrdered) {
+        this.number = number;
+        this.isOrdered = isOrdered;
     }
 
     @Override
@@ -24,6 +32,14 @@ public class Table {
     @Override
     public int hashCode() {
         return Objects.hash(number);
+    }
+
+    public boolean isOrdered() {
+        return isOrdered;
+    }
+
+    public int getNumber() {
+        return number;
     }
 
     @Override
