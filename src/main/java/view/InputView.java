@@ -1,6 +1,10 @@
 package view;
 
 import camp.nextstep.edu.missionutils.Console;
+import domain.Quantity;
+import domain.Table;
+import domain.payment.Payment;
+import exception.InvalidInputException;
 import java.util.NoSuchElementException;
 import launcher.code.MainMenu;
 
@@ -30,5 +34,33 @@ public class InputView extends IoPrinter {
         } catch (NoSuchElementException exception) {
             throw new IllegalStateException();
         }
+    }
+
+    public static Table readTable() {
+        printTitle("테이블을 선택하세요.");
+        return new Table(readLineToInteger());
+    }
+
+    public static int readLineToInteger() {
+        try {
+            return Integer.parseInt(readLineAfterNewLine());
+        } catch (Exception exception) {
+            throw new InvalidInputException("테이블은 정수만 입력할 수 있습니다.");
+        }
+    }
+
+    public static int readMenu() {
+        printTitle("등록할 메뉴를 선택하세요.");
+        return readLineToInteger();
+    }
+
+    public static Quantity readQuantity() {
+        printTitle("메뉴의 수량을 입력하세요.");
+        return new Quantity(readLineToInteger());
+    }
+
+    public static Payment readPayments() {
+        printTitle(Payment.messages());
+        return Payment.from(readLineAfterNewLine());
     }
 }
