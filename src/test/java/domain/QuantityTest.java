@@ -1,5 +1,6 @@
 package domain;
 
+import domain.quantity.Quantity;
 import exception.InvalidInputException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;

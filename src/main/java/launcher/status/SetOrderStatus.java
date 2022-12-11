@@ -8,8 +8,10 @@ public class SetOrderStatus implements OrderSystemStatus {
     @Override
     public OrderSystemStatus next(OrderSystemContext context) {
         OutputView.printMenus(context.findAllMenu());
+
         var menu = context.findMenuById(InputView.readMenu());
         var quantity = InputView.readQuantity();
+
         context.orderMenu(menu, quantity);
         return new SelectMenuStatus();
     }

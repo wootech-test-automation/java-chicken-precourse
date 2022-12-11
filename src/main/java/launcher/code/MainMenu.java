@@ -13,7 +13,7 @@ public enum MainMenu {
     MENU_1("1", "주문등록", new SelectTableStatus(new SetOrderStatus())),
     MENU_2("2", "결제하기", new SelectTableStatus(new PaymentStatus())),
     MENU_3("3", "프로그램 종료", new QuitStatus());
-
+    
     private final String command;
     private final String message;
     private final OrderSystemStatus nextStatus;
