@@ -12,6 +12,8 @@ public class InputValidator {
     public static final int TABLE_FIVE = 5;
     public static final int TABLE_SIX = 6;
     public static final int TABLE_EIGHT = 8;
+    public static final String CREDIT_CARD = "1";
+    public static final String CASH = "2";
 
     private InputValidator() {
     }
@@ -36,11 +38,18 @@ public class InputValidator {
         return tableNumber;
     }
 
-    private static int validateNumber(final String inputTableNumber) {
+    private static int validateNumber(final String userInput) {
         try {
-            return Integer.parseInt(inputTableNumber);
+            return Integer.parseInt(userInput);
         } catch (NumberFormatException exception) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMERIC_ERROR);
         }
+    }
+
+    public static int validatePayment(final String userInput) {
+        if (!userInput.equals(CREDIT_CARD) && !userInput.equals(CASH)) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_PAYMENT_TOOLS);
+        }
+        return Integer.parseInt(userInput);
     }
 }

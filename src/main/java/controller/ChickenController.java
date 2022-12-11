@@ -76,7 +76,17 @@ public class ChickenController {
     }
 
     private void requestPayment(final int tableNumber) {
+        try {
+            requestInputPayment(tableNumber);
+        } catch (IllegalArgumentException exception) {
+            OutputView.printMessage(exception.getMessage());
+            requestPayment(tableNumber);
+        }
+    }
+
+    private void requestInputPayment(final int tableNumber) {
         OutputView.printOrders(OrderService.findAllByTableNumber(tableNumber));
+        InputValidator.validatePayment(InputView.inputPaymentTools(tableNumber));
     }
 
 }
