@@ -3,7 +3,9 @@ package domain.order;
 import domain.table.Table;
 import domain.table.TableRepository;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class OrderRepository {
     private static final Map<Table, Orders> tableByOrders = new HashMap<>();
@@ -23,5 +25,12 @@ public class OrderRepository {
 
     public static Orders findOrderByTable(Table selectedTable) {
         return tableByOrders.get(selectedTable);
+    }
+
+    public static List<Integer> findOrderedTables() {
+        return tableByOrders.entrySet().stream()
+                .filter(tableOrdersEntry -> tableOrdersEntry.getValue().isRegisterOrder())
+                .map(tableOrdersEntry -> tableOrdersEntry.getKey().number())
+                .collect(Collectors.toList());
     }
 }
