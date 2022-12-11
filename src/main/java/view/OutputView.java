@@ -1,20 +1,42 @@
 package view;
 
-import domain.Menu;
-import domain.Table;
+import domain.discount.Money;
+import domain.menu.Menu;
+import domain.table.Table;
 import java.util.List;
 
 public class OutputView extends IoPrinter {
-    private static final String TOP_LINE = "┌ ─ ┐";
+    private static final String TOP_LINE = "┏ - ┓";
     private static final String TABLE_FORMAT = "| %s |";
-    private static final String BOTTOM_LINE = "└ ─ ┘";
+    private static final String BOTTOM_LINE = "┗ %s ┛";
+    private static final String ORDER_COLUMN_FORMAT = "메뉴 수량 금액";
+    private static final String DASH = "-";
+    private static final String HASH = "#";
 
-    public static void printTables(final List<Table> tables) {
-        System.out.println("## 테이블 목록");
-        final int size = tables.size();
-        printLine(TOP_LINE, size);
+    public static void printTables(final List<Table> tables, List<Integer> orderedTableNumbers) {
+        printTitle("테이블 목록");
+        printTable(tables, orderedTableNumbers);
+
+    }
+
+    private static void printTable(List<Table> tables, List<Integer> orderedTableNumbers) {
+        printLine(TOP_LINE, tables.size());
         printTableNumbers(tables);
-        printLine(BOTTOM_LINE, size);
+        printTableBottom(tables, orderedTableNumbers);
+    }
+
+    private static void printTableBottom(List<Table> tables, List<Integer> orderedTableNumbers) {
+        for (final Table table : tables) {
+            System.out.printf(BOTTOM_LINE, isContains(orderedTableNumbers, table));
+        }
+        System.out.println();
+    }
+
+    private static String isContains(List<Integer> orderedTableNumbers, Table table) {
+        if (orderedTableNumbers.contains(table.number())) {
+            return HASH;
+        }
+        return DASH;
     }
 
     public static void printMenus(final List<Menu> menus) {
@@ -38,14 +60,19 @@ public class OutputView extends IoPrinter {
     }
 
     public static void printOrderList() {
+        
         println("## 주문 내역\n"
                 + "메뉴 수량 금액\n"
                 + "후라이드 1 16000\n"
                 + "콜라 1 1000");
     }
 
-    public static void printFinalPaymentAmount() {
+    public static void printFinalPaymentAmount(Money price) {
         printTitle("최종 결제 금액");
-        println("170000원");
+        println(price.result());
+    }
+
+    public static void error(String message) {
+        println("[ERROR]" + message);
     }
 }
