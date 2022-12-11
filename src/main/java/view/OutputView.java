@@ -2,6 +2,7 @@ package view;
 
 import domain.discount.Money;
 import domain.menu.Menu;
+import domain.order.Orders;
 import domain.table.Table;
 import java.util.List;
 
@@ -59,12 +60,10 @@ public class OutputView extends IoPrinter {
         System.out.println();
     }
 
-    public static void printOrderList() {
-        
-        println("## 주문 내역\n"
-                + "메뉴 수량 금액\n"
-                + "후라이드 1 16000\n"
-                + "콜라 1 1000");
+    public static void printOrderList(final Orders orders) {
+        printTitle("주문 내역");
+        println("메뉴 수량 금액");
+        println(orders.result());
     }
 
     public static void printFinalPaymentAmount(Money price) {
