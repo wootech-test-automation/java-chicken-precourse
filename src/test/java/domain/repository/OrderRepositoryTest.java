@@ -2,6 +2,7 @@ package domain.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import domain.Category;
 import domain.Order;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,10 +20,10 @@ class OrderRepositoryTest {
     @DisplayName("주문 찾기 테스트")
     void findByTableNumber() {
         // given
-        Order order1 = new Order(1, "임시", 10, 10000);
-        Order order2 = new Order(2, "dd", 10, 10000);
-        Order order3 = new Order(2, "ee", 10, 10000);
-        Order order4 = new Order(1, "rr", 10, 10000);
+        Order order1 = new Order(1, "임시", Category.CHICKEN, 10, 10000);
+        Order order2 = new Order(2, "dd", Category.CHICKEN, 10, 10000);
+        Order order3 = new Order(2, "ee", Category.CHICKEN, 10, 10000);
+        Order order4 = new Order(1, "rr", Category.CHICKEN, 10, 10000);
 
         // when
         OrderRepository.saveOrder(order1);
@@ -38,9 +39,9 @@ class OrderRepositoryTest {
     @DisplayName("주문 저장 테스트")
     void saveOrder() {
         // given
-        Order order1 = new Order(1, "임시", 10, 10000);
-        Order order2 = new Order(2, "임시", 10, 10000);
-        Order order3 = new Order(3, "임시", 10, 10000);
+        Order order1 = new Order(1, "임시", Category.CHICKEN, 10, 10000);
+        Order order2 = new Order(2, "임시", Category.CHICKEN, 10, 10000);
+        Order order3 = new Order(3, "임시", Category.CHICKEN, 10, 10000);
 
         // when
         OrderRepository.saveOrder(order1);
@@ -56,9 +57,9 @@ class OrderRepositoryTest {
     @DisplayName("주문 중첩 저장 테스트")
     void saveSameOrder() {
         // given
-        Order order1 = new Order(1, "임시", 10, 10000);
-        Order order2 = new Order(1, "임시", 10, 10000);
-        Order order3 = new Order(1, "임시", 10, 10000);
+        Order order1 = new Order(1, "임시", Category.CHICKEN, 10, 10000);
+        Order order2 = new Order(1, "임시", Category.CHICKEN, 10, 10000);
+        Order order3 = new Order(1, "임시", Category.CHICKEN, 10, 10000);
 
         // when
         OrderRepository.saveOrder(order1);
@@ -76,12 +77,12 @@ class OrderRepositoryTest {
     @DisplayName("주문 삭제 테스트")
     void removeAllByTableNumber() {
         // given
-        Order order1 = new Order(1, "aa", 10, 10000);
-        Order order2 = new Order(2, "bb", 10, 10000);
-        Order order3 = new Order(2, "cc", 10, 10000);
-        Order order4 = new Order(3, "dd", 10, 10000);
-        Order order5 = new Order(3, "ee", 10, 10000);
-        Order order6 = new Order(3, "ff", 10, 10000);
+        Order order1 = new Order(1, "aa", Category.CHICKEN, 10, 10000);
+        Order order2 = new Order(2, "bb", Category.CHICKEN, 10, 10000);
+        Order order3 = new Order(2, "cc", Category.CHICKEN, 10, 10000);
+        Order order4 = new Order(3, "dd", Category.CHICKEN, 10, 10000);
+        Order order5 = new Order(3, "ee", Category.CHICKEN, 10, 10000);
+        Order order6 = new Order(3, "ff", Category.CHICKEN, 10, 10000);
 
         // when
         OrderRepository.saveOrder(order1);

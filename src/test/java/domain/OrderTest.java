@@ -14,7 +14,7 @@ class OrderTest {
     void discountRateTest(int quantity) {
         // given
         // when
-        Order order = new Order(1, "임시", quantity, 20000);
+        Order order = new Order(1, "임시", Category.CHICKEN, quantity, 20000);
 
         // then
         Assertions.assertThat(order.getTotalPrice()).isEqualTo(quantity * 20000 - (quantity / 10 * 10000));
@@ -27,7 +27,7 @@ class OrderTest {
         // given
         // when
         // then
-        Assertions.assertThatThrownBy(() -> new Order(1, "임시", quantity, 20000))
+        Assertions.assertThatThrownBy(() -> new Order(1, "임시", Category.CHICKEN, quantity, 20000))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.OUT_BOUNDS_QUANTITY);
     }
